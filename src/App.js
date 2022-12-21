@@ -17,7 +17,7 @@ function App() {
           b(copy);}}>버튼</button>
 
         <h4 style = {{color:'black', fontSize : '16px'}}>{글제목[0]}<span onClick={() => {c(num + 1)}}>😍😍</span>{num}</h4>
-        <p>2월 17일 발행</p>
+        <p>2월 17일 발행함</p>
         <hr></hr>
         <h4 style = {{color:'black', fontSize : '16px'}}>{글제목[1]}</h4>
         <p>2월 17일 발행</p>
