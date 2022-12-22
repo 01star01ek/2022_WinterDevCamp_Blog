@@ -23,11 +23,11 @@ function App() {
         <Link to = "/blogs">Blogs</Link>
       </div>
       <Switch>
-        <Route path ="/">
+        <Route path ="/" exact>
           Home page
         </Route>
         <Route path ="/blogs">
-            <div className="container">
+          <div className="container">
             <div className="mb-3">
             <label>
               <label className="form-label">Title</label>
