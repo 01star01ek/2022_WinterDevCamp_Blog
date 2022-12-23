@@ -1,9 +1,5 @@
 
 import NavBar from './components/NavBar';
-import HomePage from './pages/HomePage';
-import ListPage from './pages/ListPage';
-import CreatePage from './pages/CreatePage';
-import EditPage from './pages/EditPage';
 
 import {
   BrowserRouter as Router,
@@ -11,26 +7,16 @@ import {
   Route
 } from 'react-router-dom';
 
+import routes from './routes'
+
 function App() {
 
   return (
     <Router>
       <NavBar/>
       <div className = "container">
-      <Switch>
-        <Route path ="/" exact>
-          <HomePage/>
-        </Route>
-        <Route path ="/blogs" exact>
-          <ListPage/>
-        </Route>
-        <Route path ="/blogs/create" exact>
-          <CreatePage/>
-        </Route>
-        <Route path ="/blogs/eidt" exact>
-          <EditPage/>
-        </Route>
-      </Switch>
+      {routes.map((route) => {
+        return <Route exact path = {route.path} component ={route.component} key={route.path}></Route>;})}
       </div>
     </Router>
   );

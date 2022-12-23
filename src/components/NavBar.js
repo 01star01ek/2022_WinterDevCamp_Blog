@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-  
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -8,7 +8,7 @@ const NavBar = () => {
             <Link className="navbar-brand" to="/">Home</Link>
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link classNamr="nav-link active" aria-current ="page" to="/blogs" style={{textDecoration : 'none'}}>Blogs</Link>
+                  <NavLink ativeClassName ="active" className="nav-link" aria-current="page" to="/blogs" exact>Blogs</NavLink>
                 </li>
               </ul>
         </div>
