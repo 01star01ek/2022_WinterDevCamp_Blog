@@ -9,6 +9,15 @@ const ListPage = () => {
     const history = useHistory(); 
     const [posts, setPosts] = useState([]);
 
+    const deleteBlog = (e, id) => {
+        e.stopPropagation();
+        axios.delete(`http://localhost:3001/posts/${id}`).then(() => {
+            setPosts(prevPosts => {
+                return prevPosts.filter(post => {return post.id !== id;})
+            })
+        })
+    }
+
     const getPost = () => {
         axios.get('http://localhost:3001/posts').then((response) => {
             setPosts(response.data);
@@ -32,10 +41,7 @@ const ListPage = () => {
             {posts.map((post) => {
                 return (
                     <Card key={post.id} title ={post.title} onClick ={() => history.push('/blogs/edit')} >
-                        <div><button className = "btn btn-secondary btn-sm" onClick ={(event) =>{
-                            event.stopPropagation();
-                            
-                        } }>삭제</button></div>
+                        <div><button className = "btn btn-secondary btn-sm" onClick ={(e) => deleteBlogs(e, post.id)}>삭제</button></div>
                     </Card>
                 );
             })}

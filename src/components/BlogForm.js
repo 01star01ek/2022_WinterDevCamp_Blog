@@ -17,18 +17,18 @@ const BlogForm = () => {
         <div className="container">
             <h1>blog posting</h1>
             <div className="mb-3">
-                <label>
+                <form>
                 <label className="form-label">Title</label>
                 <textarea className="form-control" vlaue={title} onChange = {(event) =>  {setTitle(event.target.value)}}/>
-                </label>
+                </form>
             </div>
             <div className="mb-3">
-                <label>
+                <form>
                 <label className="form-label">Body</label>
                 <textarea rows={20} className="form-control" vlaue={body} onChange = {(event) =>  {setBody(event.target.value)}}/>
-                </label>
+                </form>
             </div>
-            <button className="btn btn-outline-danger" onClick={onSubmit}>포스팅</button>
+            <button className="btn btn-success" onClick={onSubmit}>포스팅</button>
         </div>    
     );
 };
