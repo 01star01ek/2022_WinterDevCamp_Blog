@@ -8,6 +8,7 @@ import {useHistory} from 'react-router-dom';
 const ListPage = () => {
     const history = useHistory(); 
     const [posts, setPosts] = useState([]);
+    const[loading, setLoading] = useState(true);
 
     const deleteBlog = (e, id) => {
         e.stopPropagation();
@@ -21,6 +22,7 @@ const ListPage = () => {
     const getPost = () => {
         axios.get('http://localhost:3001/posts').then((response) => {
             setPosts(response.data);
+            setLoading(false);
         })
     }
 
@@ -38,13 +40,18 @@ const ListPage = () => {
                 </Link>
             </div>
             </div>
-            {posts.map((post) => {
-                return (
-                    <Card key={post.id} title ={post.title} onClick ={() => history.push('/blogs/edit')} >
-                        <div><button className = "btn btn-secondary btn-sm" onClick ={(e) => deleteBlogs(e, post.id)}>삭제</button></div>
-                    </Card>
-                );
-            })}
+            {loading? <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                    <span className="sr-only"></span>
+                </div>
+                </div> 
+            : posts.length > 0 ? posts.map((post) => {
+            return (
+                <Card key={post.id} title ={post.title} onClick ={() => history.push('/blogs/edit')} >
+                    <div><button className = "btn btn-secondary btn-sm" onClick ={(e) => deleteBlog(e, post.id)}>삭제</button></div>
+                </Card>
+            );
+            }) : <div>'글을 작성해주세요'</div>}
         </div>    
     );
 };
