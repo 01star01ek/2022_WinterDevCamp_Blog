@@ -1,44 +1,90 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from 'react-router';
+import propTypes from 'prop-types';
 
-const BlogForm = ({edit}) => {
-const History = useHistory();
+const BlogForm = ({ edit }) => {
+  const history = useHistory();
+  const { id } = useParams();
 
-    const[title, setTitle] = useState('');
-    const[body, setBody] = useState('');
-    const onSubmit = () => {
-      axios.post('http://localhost:3001/posts', {
-        title,
-        body,
-        date : Date.now()
-      }).then(() => {
-        History.push('/blogs');
+  const [title, setTitle] = useState('');
+  const [originalTitle, setOriginalTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [originalBody, setOriginalBody] = useState('');
+
+
+  useEffect(() => {
+    if (edit) {
+      axios.get(`http://localhost:3001/posts/${id}`).then(res => {
+        setTitle(res.data.title);
+        setOriginalTitle(res.data.title);
+        setBody(res.data.body);
+        setOriginalBody(res.data.body);
+  
       })
     }
+  }, [id, edit]);
 
-    return (
-        <div className="container">
-            <div className="mb-3">
-                <form>
-                <textarea rows="1" placeholder = "제목을 입력해주세요" className="form-control" vlaue={title} onChange = {(event) =>  {setTitle(event.target.value)}}/>
-                </form>
-            </div>
-            <div className="mb-3">
-                <form>
-                <textarea rows="18" className="form-control" vlaue={body} onChange = {(event) =>  {setBody(event.target.value)}}/>
-                </form>
-            </div>
-            <button className="btn btn-success" onClick={onSubmit}>{edit ? "저장" : "포스팅"}</button>
-        </div>    
-    );
+  const onSubmit = () => {
+   
+      if (edit) {
+        axios.patch(`http://localhost:3001/posts/${id}`, {
+          title,
+          body,
+        }).then(res => {
+          history.push(`/blogs/${id}`)
+        })
+      } else {
+        axios.post('http://localhost:3001/posts', {
+          title,
+          body,
+          createdAt: Date.now()
+        }).then(() =>  {
+          history.push(`/blogs`);
+        }
+          )
+      }
+  };
+
+
+  return (
+    <div>
+      <div className="mb-3">
+        <input placeholder='제목을 입력해주세요'
+          className={`form-control`}
+          value={title}
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}
+        />
+      </div>
+      <div className="mb-3">
+        <textarea placeholder='내용을 입력해주세요'
+          className={`form-control`}
+          value={body}
+          onChange={(event) => {
+            setBody(event.target.value);
+          }}
+          rows="18"
+        />
+      </div>
+
+      <button 
+        className="btn btn-success"
+        onClick={onSubmit}
+      >
+        {edit ? '저장' : '포스팅' }
+      </button>
+    </div>
+  );
 };
-export default BlogForm;
 
 BlogForm.propTypes = {
-  edit: Boolean
+  edit: propTypes.bool
 }
 
 BlogForm.defaultProps = {
-  edit : false
+  edit: false
 }
+
+export default BlogForm;
