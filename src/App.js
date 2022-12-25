@@ -20,7 +20,6 @@ function App() {
       <Switch>
       {routes.map((route) => {
         return <Route exact path = {route.path} component ={route.component} key={route.path}></Route>;})}
-
         </Switch>
       </div>
     </Router>
