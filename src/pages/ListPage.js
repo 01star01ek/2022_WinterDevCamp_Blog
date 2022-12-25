@@ -47,11 +47,11 @@ const ListPage = () => {
                 </div> 
             : posts.length > 0 ? posts.map((post) => {
             return (
-                <Card key={post.id} title ={post.title} onClick ={() => history.push('/blogs/edit')} >
+                <Card key={post.id} title ={post.title} onClick ={() => history.push(`/blogs/${post.id}`)} >
                     <div><button className = "btn btn-secondary btn-sm" onClick ={(e) => deleteBlog(e, post.id)}>삭제</button></div>
                 </Card>
             );
-            }) : <div>'글을 작성해주세요'</div>}
+            }) : <div>오늘 하루는 어떠셨나요?<br></br>글쓰기를 통해 기록으로 남겨보세요</div>}
         </div>    
     );
 };
