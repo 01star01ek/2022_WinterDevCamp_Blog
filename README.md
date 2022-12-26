@@ -21,5 +21,5 @@
 <p>    터미널 창에서 npm start 입력 -> npm run db 입력</p>
  <br>
 <h2>😀 주요 확인 요청드릴 부분과 질문</h2>
-<p>components > comment 부분에서 버튼을 Click 하면 해당 내역을 업데이트 하기 위해 강제 새로고침을 하는데 더 효율적인 방법이 있을 것 같아서 궁금합니다. /p>
-<p> style을 위해 CSS를 만들때 SCSS, Styled Components 등 스타일 기법과 언어가 다양한데 어떤 방법을 더 추천하시는지 궁급합니다.</p>
+<p>○components > comment 부분에서 버튼을 Click 하면 해당 내역을 업데이트 하기 위해 강제 새로고침을 하는데 더 효율적인 방법이 있을 것 같아서 궁금합니다. /p>
+<p>○style을 위해 CSS를 만들때 SCSS, Styled Components 등 스타일 기법과 언어가 다양한데 어떤 방법을 더 추천하시는지 궁급합니다.</p>
