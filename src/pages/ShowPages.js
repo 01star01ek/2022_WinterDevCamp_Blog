@@ -3,8 +3,9 @@ import axios  from 'axios';
 import { useEffect } from "react";
 import { useState } from "react";
 import {Link} from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
-export default function ShowPages() {
+export default function ShowPages({edit}) {
     const {id} = useParams();
     const[loading, setLoading] = useState(true);
     const [post, setPost] = useState(null);
@@ -36,7 +37,7 @@ export default function ShowPages() {
             <div className ="d-flex flex-row">
             <h1 className="flex-grow-1">{post.title}</h1>
             <div>
-            <Link className ="btn btn-secondary" to ={`/blogs/${id}/edit`}>수정</Link>
+                {edit && <Link className ="btn btn-secondary" to ={`/blogs/${id}/edit`}>수정</Link> }
             </div>
             
             </div>
@@ -47,4 +48,8 @@ export default function ShowPages() {
             <p>{post.body}</p>
         </div>
     );
+}
+
+ShowPages.defaultProps = {
+    edit : false
 }

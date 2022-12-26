@@ -1,5 +1,6 @@
 import { PropTypes } from 'prop-types';
 
+
 export default function Card({title, children, onClick}) {
     return(
     <div className ="card mb-2 cursor-pointer" onClick={onClick}>
