@@ -40,7 +40,7 @@ const BlogForm = ({ edit }) => {
           body,
           createdAt: Date.now()
         }).then(() =>  {
-          history.push(`/blogs`);
+          history.push(`/master`);
         }
           )
       }
